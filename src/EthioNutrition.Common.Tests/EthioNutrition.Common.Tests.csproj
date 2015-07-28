@@ -42,12 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EthioNutrition.Common\EthioNutrition.Common.csproj">
       <Project>{88e8dee4-414a-49c1-adbb-7044ec6e5eab}</Project>
       <Name>EthioNutrition.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EthioNutrition.Data\EthioNutrition.Data.csproj">
+      <Project>{03394d73-f7e8-43ae-ad9c-8d8a147ac309}</Project>
+      <Name>EthioNutrition.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
