@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\..\lib\Moq.4.2.1507.0118\lib\net40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\lib\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,6 +46,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EthioNutrition.Common\EthioNutrition.Common.csproj">
+      <Project>{88e8dee4-414a-49c1-adbb-7044ec6e5eab}</Project>
+      <Name>EthioNutrition.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EthioNutrition.Data\EthioNutrition.Data.csproj">
+      <Project>{03394d73-f7e8-43ae-ad9c-8d8a147ac309}</Project>
+      <Name>EthioNutrition.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EthioNutrition.Web.Api.Models\EthioNutrition.Web.Api.Models.csproj">
+      <Project>{623021a1-e047-4da6-8e3a-a5b2a0db78fd}</Project>
+      <Name>EthioNutrition.Web.Api.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EthioNutrition.Web.Api\EthioNutrition.Web.Api.csproj">
+      <Project>{3ad7ffd6-a8ae-485b-b877-2dcab5ea8927}</Project>
+      <Name>EthioNutrition.Web.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EthioNutrition.Web.Common\EthioNutrition.Web.Common.csproj">
+      <Project>{181fc59d-893e-48f1-9c0d-1f4d95b7c89f}</Project>
+      <Name>EthioNutrition.Web.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
