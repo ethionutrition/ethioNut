@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace EthioNutrition.Data.Models
 {
+    //Models used for internal purpose only, used by NHibernate
     public class UserProfile: IVersionedModelObject
     {
         public virtual long ProfileID { get; set; }

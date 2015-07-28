@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using EthioNutrition.Common;
 namespace EthioNutrition.Data.Models
 {
+    //Models used for internal purpose only, used by NHibernate
     public class User:IVersionedModelObject
     {
         public virtual Guid UserId { get; set; }
