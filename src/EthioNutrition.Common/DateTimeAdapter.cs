@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EthioNutrition.Common
 {
-    class DateTimeAdapter:IDateTime
+    public class DateTimeAdapter:IDateTime
     {
         public DateTime UtcNow
         {

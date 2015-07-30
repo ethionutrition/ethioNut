@@ -147,6 +147,9 @@
       <Private>True</Private>
       <HintPath>..\..\lib\System.Spatial.5.2.0\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\..\lib\WebActivator.1.5.1\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\..\lib\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
@@ -159,6 +162,8 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\NinjectConfigurator.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
@@ -308,6 +313,10 @@
     <ProjectReference Include="..\EthioNutrition.Common\EthioNutrition.Common.csproj">
       <Project>{88e8dee4-414a-49c1-adbb-7044ec6e5eab}</Project>
       <Name>EthioNutrition.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EthioNutrition.Data.SqlServer\EthioNutrition.Data.SqlServer.csproj">
+      <Project>{2e77b1b4-0102-4238-83f5-1eca19269501}</Project>
+      <Name>EthioNutrition.Data.SqlServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\EthioNutrition.Data\EthioNutrition.Data.csproj">
       <Project>{03394d73-f7e8-43ae-ad9c-8d8a147ac309}</Project>

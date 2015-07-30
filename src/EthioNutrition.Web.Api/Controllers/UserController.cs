@@ -5,15 +5,17 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using EthioNutrition.Common;
 
 namespace EthioNutrition.Web.Api.Controllers
 {
     public class UserController : ApiController
     {
+        private readonly IDateTime _datetime;
         //Constructor
-        public UserController()
+        public UserController(IDateTime datetime)
         {
-
+            _datetime = datetime;
         }
         public User Get(Guid id)
         {
