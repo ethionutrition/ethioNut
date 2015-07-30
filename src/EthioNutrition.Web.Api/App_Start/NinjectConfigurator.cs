@@ -4,7 +4,7 @@ using System.Web.Http;
 using FluentNHibernate.Cfg.Db;
 using EthioNutrition.Common;
 using EthioNutrition.Data;
-//using EthioNutrition.Data.SqlServer;
+using EthioNutrition.Data.SqlServer;
 //using EthioNutrition.Web.Api.HttpFetchers;
 //using EthioNutrition.Web.Api.TypeMappers;
 using EthioNutrition.Web.Common;
@@ -51,6 +51,7 @@ namespace EthioNutrition.Web.Api.App_Start
             ConfigureLog4net(container);
 
             container.Bind<IDateTime>().To<DateTimeAdapter>();
+            container.Bind<ISqlCommandFactory>().To<SqlCommandFactory>();
             //container.Bind<IDatabaseValueParser>().To<DatabaseValueParser>();
 
             //container.Bind<IHttpCategoryFetcher>().To<HttpCategoryFetcher>();
@@ -101,17 +102,17 @@ namespace EthioNutrition.Web.Api.App_Start
         private void ConfigureNHibernate(IKernel container)
         {
             // Build the NHibernate ISessionFactory object
-            //var sessionFactory = FluentNHibernate
-            //    .Cfg.Fluently.Configure()
-            //    .Database(
-            //        MsSqlConfiguration.MsSql2008.ConnectionString(
-            //            c => c.FromConnectionStringWithKey("EthioNutritionDb")))
-            //    .CurrentSessionContext("web")
-            //    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<SqlCommandFactory>())
-            //    .BuildSessionFactory();
-
+            var sessionFactory = FluentNHibernate
+                .Cfg.Fluently.Configure()
+                .Database(
+                MsSqlConfiguration.MsSql2008.ConnectionString(
+                c => c.FromConnectionStringWithKey("EthioNutritionDb")))
+                .CurrentSessionContext("web")
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<SqlCommandFactory>())
+                .BuildSessionFactory();
             //// Add the ISessionFactory instance to the container
-            //container.Bind<ISessionFactory>().ToConstant(sessionFactory);
+
+            container.Bind<ISessionFactory>().ToConstant(sessionFactory);
 
             //// Configure a resolver method to be used for creating ISession objects
             //container.Bind<ISession>().ToMethod(CreateSession);

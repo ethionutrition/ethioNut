@@ -19,14 +19,14 @@ namespace EthioNutrition.Web.Api.Controllers
         }
         public User Get(Guid id)
         {
-            return null;
+            throw new System.NotImplementedException();
         }
 
         public HttpResponseMessage Post(HttpRequestMessage request, User user)
         {
             //var response = request.CreateResponse(HttpStatusCode.Created, newUser);
             //response.Headers.Add("Location", Href);
-            return null;
+            throw new System.NotImplementedException();
         }
         public HttpResponseMessage Delete(Guid id)
         {

@@ -45,7 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISqlCommandFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlCommandFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EthioNutrition.Common\EthioNutrition.Common.csproj">
