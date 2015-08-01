@@ -2,7 +2,11 @@
 	[UserId] [uniqueidentifier] NOT NULL PRIMARY KEY CLUSTERED,
 	[Firstname] [nvarchar](50) NOT NULL,
 	[Lastname] [nvarchar](50) NOT NULL,
-	[ts] [rowversion] NOT NULL
+	[ProfileId] BIGINT NULL,
+	[ts] [rowversion] NOT NULL,
+	
+	CONSTRAINT [FK_User_User_Profile] FOREIGN KEY ([ProfileId]) REFERENCES [dbo].[UserProfile] ([ProfileId])
+
 )
 go
 

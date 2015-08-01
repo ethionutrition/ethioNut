@@ -34,6 +34,7 @@ begin
 	select top 1 @priorityId = PriorityId from Priority;
 	select top 1 @categoryId = CategoryId from Category;
 	select top 1 @userId = UserId from [User];
+	
 
 	insert into dbo.Task(Subject, StartDate, PriorityId, StatusId, CreatedDate, CreatedUserId)
 		values('Test Task', getdate(), @priorityId, @statusId, getdate(), @userId);

@@ -5,7 +5,8 @@ select	u.UserId,
 		u.Lastname,
 		u.ts,
 		am.Email,
-		au.UserName
+		am.CreateDate
+
 	from dbo.aspnet_Membership am
 	inner join dbo.aspnet_Users au on au.UserId = am.UserId
 	inner join dbo.[User] u on u.UserId = au.UserId
