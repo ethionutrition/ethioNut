@@ -115,7 +115,8 @@ namespace EthioNutrition.Web.Api.App_Start
             container.Bind<ISessionFactory>().ToConstant(sessionFactory);
 
             //// Configure a resolver method to be used for creating ISession objects
-            //container.Bind<ISession>().ToMethod(CreateSession);
+
+            container.Bind<ISession>().ToMethod(CreateSession);
 
            // container.Bind<ICurrentSessionContextAdapter>().To<CurrentSessionContextAdapter>();
         }
@@ -124,17 +125,16 @@ namespace EthioNutrition.Web.Api.App_Start
         /// Method used to create instances of ISession objects
         /// and bind them to the HTTP context.
         /// </summary>
-        private ISession CreateSession(IContext context)
-        {
-            var sessionFactory = context.Kernel.Get<ISessionFactory>();
-            if (!CurrentSessionContext.HasBind(sessionFactory))
-            {
-                // Open new ISession and bind it to the current session context
-                var session = sessionFactory.OpenSession();
-                CurrentSessionContext.Bind(session);
-            }
-
-            return sessionFactory.GetCurrentSession();
+       private ISession CreateSession(IContext context)
+       {
+           var sessionFactory = context.Kernel.Get<ISessionFactory>();
+           if (!CurrentSessionContext.HasBind(sessionFactory))
+           {
+              // Open new ISession and bind it to the current session context
+               var session = sessionFactory.OpenSession();
+               CurrentSessionContext.Bind(session);
+           }
+           return sessionFactory.GetCurrentSession();
         }
     }
 }

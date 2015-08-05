@@ -11,7 +11,6 @@ namespace EthioNutrition.Data.SqlServer.Mapping
             Map(x => x.FirstName).Not.Nullable();
             Map(x => x.LastName).Not.Nullable();
             Map(x => x.Email).Not.Nullable();
-            Map(x => x.DateCreated).Not.Nullable();
 
             References(x => x.profile, "ProfileId");
 
