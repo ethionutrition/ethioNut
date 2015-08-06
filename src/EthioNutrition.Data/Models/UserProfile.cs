@@ -16,7 +16,7 @@ namespace EthioNutrition.Data.Models
         //user BMI should be set internally
         public virtual long UserBMI { get;  set; }    
         
-        public byte[] Version { get; set; }
+        public virtual byte[] Version { get; set; }
 
     }
 
