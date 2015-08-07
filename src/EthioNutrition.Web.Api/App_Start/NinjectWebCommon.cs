@@ -59,7 +59,7 @@ namespace EthioNutrition.Web.Api.App_Start
             var containerConfigurator = new NinjectConfigurator();
             containerConfigurator.Configure(kernel);
 
-            //GlobalConfiguration.Configuration.MessageHandlers.Add(kernel.Get<BasicAuthenticationMessageHandler>());
+            GlobalConfiguration.Configuration.MessageHandlers.Add(kernel.Get<BasicAuthenticationMessageHandler>());
          }
     }
 }

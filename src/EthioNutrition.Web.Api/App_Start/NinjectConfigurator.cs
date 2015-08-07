@@ -8,7 +8,7 @@ using EthioNutrition.Data.SqlServer;
 //using EthioNutrition.Web.Api.HttpFetchers;
 //using EthioNutrition.Web.Api.TypeMappers;
 using EthioNutrition.Web.Common;
-//using EthioNutrition.Web.Common.Security;
+using EthioNutrition.Web.Common.Security;
 using NHibernate;
 using NHibernate.Context;
 using Ninject;
@@ -66,12 +66,12 @@ namespace EthioNutrition.Web.Api.App_Start
             container.Bind<IActionTransactionHelper>().To<ActionTransactionHelper>();
 
             //container.Bind<IUserManager>().To<UserManager>();
-            //container.Bind<IMembershipInfoProvider>().To<MembershipAdapter>();
+            container.Bind<IMembershipInfoProvider>().To<MembershipAdapter>();
             
             //container.Bind<IUserMapper>().To<UserMapper>();
            
-            //container.Bind<ISqlCommandFactory>().To<SqlCommandFactory>();
-            //container.Bind<IUserRepository>().To<UserRepository>();
+            container.Bind<ISqlCommandFactory>().To<SqlCommandFactory>();
+            container.Bind<IUserRepository>().To<UserRepository>();
 
             //container.Bind<IUserSession>().ToMethod(CreateUserSession).InRequestScope();
         }
