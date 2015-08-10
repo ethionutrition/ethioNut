@@ -28,7 +28,8 @@ namespace EthioNutrition.Web.Common.Security
 
         public MembershipUserWrapper CreateUser(string email, string password)
         {
-            var user = Membership.CreateUser(email, password, email);
+            var username = email;
+            var user = Membership.CreateUser(username, password, email);
             return CreateMembershipUserWrapper(user);
         }
 
