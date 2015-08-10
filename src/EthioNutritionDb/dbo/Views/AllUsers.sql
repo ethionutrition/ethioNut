@@ -3,6 +3,7 @@ as
 select	u.UserId,
 		u.Firstname,
 		u.Lastname,
+		u.ProfileId,
 		u.ts,
 		am.Email
 
