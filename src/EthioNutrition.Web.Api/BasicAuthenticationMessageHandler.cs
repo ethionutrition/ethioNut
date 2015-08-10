@@ -51,28 +51,28 @@ namespace EthioNutrition.Web.Api
                 return CreateUnauthorizedResponse();
             }
 
-            var username = credentialParts[0].Trim();
+            var email = credentialParts[0].Trim();
             var password = credentialParts[1].Trim();
 
-            if (!_membershipAdapter.ValidateUser(username, password))
+            if (!_membershipAdapter.ValidateUser(email, password))
             {
                 return CreateUnauthorizedResponse();
             }
 
-            SetPrincipal(username);
+            SetPrincipal(email);
 
             return base.SendAsync(request, cancellationToken);
         }
 
-        private void SetPrincipal(string username)
+        private void SetPrincipal(string email)
         {
-            var roles = _membershipAdapter.GetRolesForUser(username);
-            var user = _membershipAdapter.GetUser(username);
+            var roles = _membershipAdapter.GetRolesForUser(email);
+            var user = _membershipAdapter.GetUser(email);
 
             User modelUser;
             using (var session = _sessionFactory.OpenSession())
             {
-                modelUser = session.Get<User>(user.UserID);
+                modelUser = session.Get<User>(user.UserId);
             }
 
             var identity = CreateIdentity(user.Email, modelUser);
@@ -85,9 +85,9 @@ namespace EthioNutrition.Web.Api
                 HttpContext.Current.User = principal;
             }
         }
-        private GenericIdentity CreateIdentity(string username, User modelUser)
+        private GenericIdentity CreateIdentity(string email, User modelUser)
         {
-            var identity = new GenericIdentity(username, BasicScheme);
+            var identity = new GenericIdentity(email, BasicScheme);
             identity.AddClaim(new Claim(ClaimTypes.Sid, modelUser.UserId.ToString()));
             identity.AddClaim(new Claim(ClaimTypes.GivenName, modelUser.FirstName));
             identity.AddClaim(new Claim(ClaimTypes.Surname, modelUser.LastName));
@@ -97,6 +97,7 @@ namespace EthioNutrition.Web.Api
         private Task<HttpResponseMessage> CreateUnauthorizedResponse()
         {
             var response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
+            //tells the calling browser or other application that you are expecting basic authentication credentials—and you didn’t get them.
             response.Headers.Add(ChallengeAuthenticationHeaderName, BasicScheme);
 
             var taskCompletionSource = new TaskCompletionSource<HttpResponseMessage>();

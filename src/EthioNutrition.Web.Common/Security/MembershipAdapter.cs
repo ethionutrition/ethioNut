@@ -15,7 +15,7 @@ namespace EthioNutrition.Web.Common.Security
         {
             return new MembershipUserWrapper
             {
-                UserID = Guid.Parse(user.ProviderUserKey.ToString()),
+                UserId = Guid.Parse(user.ProviderUserKey.ToString()),
                 Email= user.Email
             };
         }
