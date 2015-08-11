@@ -73,7 +73,16 @@ namespace EthioNutrition.Web.Api.App_Start
             container.Bind<ISqlCommandFactory>().To<SqlCommandFactory>();
             container.Bind<IUserRepository>().To<UserRepository>();
 
-            //container.Bind<IUserSession>().ToMethod(CreateUserSession).InRequestScope();
+            container.Bind<IUserSession>().ToMethod(CreateUserSession).InRequestScope();
+        }
+
+        /// <summary>
+        /// Used to fetch the current thread's principal as 
+        /// an <see cref="IUserSession"/> object.
+        /// </summary>
+        private IUserSession CreateUserSession(IContext args)
+        {
+            return new UserSession(Thread.CurrentPrincipal as GenericPrincipal);
         }
 
         /// <summary>
@@ -86,15 +95,6 @@ namespace EthioNutrition.Web.Api.App_Start
             var loggerForWebSite = LogManager.GetLogger("EthioNutritionWebsite");
             container.Bind<ILog>().ToConstant(loggerForWebSite);
         }
-
-        /// <summary>
-        /// Used to fetch the current thread's principal as 
-        /// an <see cref="IUserSession"/> object.
-        /// </summary>
-        //private IUserSession CreateUserSession(IContext arg)
-        //{
-        //    return new UserSession(Thread.CurrentPrincipal as GenericPrincipal);
-        //}
 
         /// <summary>
         /// Sets up NHibernate, and adds an ISessionFactory to the given
