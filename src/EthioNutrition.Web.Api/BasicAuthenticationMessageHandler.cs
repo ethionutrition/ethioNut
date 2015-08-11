@@ -92,6 +92,7 @@ namespace EthioNutrition.Web.Api
             identity.AddClaim(new Claim(ClaimTypes.GivenName, modelUser.FirstName));
             identity.AddClaim(new Claim(ClaimTypes.Surname, modelUser.LastName));
             identity.AddClaim(new Claim(ClaimTypes.Email, modelUser.Email));
+            identity.AddClaim(new Claim(ClaimTypes.Name, modelUser.Email));
             return identity;
         }
         private Task<HttpResponseMessage> CreateUnauthorizedResponse()
