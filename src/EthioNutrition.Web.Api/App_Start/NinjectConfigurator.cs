@@ -66,7 +66,7 @@ namespace EthioNutrition.Web.Api.App_Start
             container.Bind<IActionExceptionHandler>().To<ActionExceptionHandler>();
             container.Bind<IActionTransactionHelper>().To<ActionTransactionHelper>();
 
-            //container.Bind<IUserManager>().To<UserManager>();
+            container.Bind<IUserManager>().To<UserManager>();
             container.Bind<IMembershipInfoProvider>().To<MembershipAdapter>();
            
             container.Bind<ISqlCommandFactory>().To<SqlCommandFactory>();

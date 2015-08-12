@@ -190,6 +190,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="IUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HttpFetchers\HttpUserFetcher.cs" />
     <Compile Include="HttpFetchers\HttpUserProfileFetcher.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="TypeMappers\IUserProfileMapper.cs" />
     <Compile Include="TypeMappers\UserMapper.cs" />
     <Compile Include="TypeMappers\UserProfileMapper.cs" />
+    <Compile Include="UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
