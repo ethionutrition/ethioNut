@@ -5,8 +5,8 @@ using FluentNHibernate.Cfg.Db;
 using EthioNutrition.Common;
 using EthioNutrition.Data;
 using EthioNutrition.Data.SqlServer;
-//using EthioNutrition.Web.Api.HttpFetchers;
-//using EthioNutrition.Web.Api.TypeMappers;
+using EthioNutrition.Web.Api.HttpFetchers;
+using EthioNutrition.Web.Api.TypeMappers;
 using EthioNutrition.Web.Common;
 using EthioNutrition.Web.Common.Security;
 using NHibernate;
@@ -55,11 +55,12 @@ namespace EthioNutrition.Web.Api.App_Start
             container.Bind<ISqlCommandFactory>().To<SqlCommandFactory>();
             //container.Bind<IDatabaseValueParser>().To<DatabaseValueParser>();
 
-            //container.Bind<IHttpCategoryFetcher>().To<HttpCategoryFetcher>();
-            //container.Bind<IHttpPriorityFetcher>().To<HttpPriorityFetcher>();
-            //container.Bind<IHttpStatusFetcher>().To<HttpStatusFetcher>();
-            //container.Bind<IHttpUserFetcher>().To<HttpUserFetcher>();
-            //container.Bind<IHttpTaskFetcher>().To<HttpTaskFetcher>();
+            container.Bind<IHttpUserFetcher>().To<HttpUserFetcher>();
+            container.Bind<IHttpUserProfileFetcher>().To<HttpUserProfileFetcher>();
+            
+            container.Bind<IUserMapper>().To<UserMapper>();
+            container.Bind<IUserProfileMapper>().To<UserProfileMapper>();
+            
             container.Bind<IActionLogHelper>().To<ActionLogHelper>();
             container.Bind<IExceptionMessageFormatter>().To<ExceptionMessageFormatter>();
             container.Bind<IActionExceptionHandler>().To<ActionExceptionHandler>();
@@ -67,8 +68,6 @@ namespace EthioNutrition.Web.Api.App_Start
 
             //container.Bind<IUserManager>().To<UserManager>();
             container.Bind<IMembershipInfoProvider>().To<MembershipAdapter>();
-            
-            //container.Bind<IUserMapper>().To<UserMapper>();
            
             container.Bind<ISqlCommandFactory>().To<SqlCommandFactory>();
             container.Bind<IUserRepository>().To<UserRepository>();
