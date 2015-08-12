@@ -9,6 +9,8 @@ using NHibernate;
 using NHibernate.Linq;
 using EthioNutrition.Web.Api.TypeMappers;
 using EthioNutrition.Web.Api.HttpFetchers;
+using EthioNutrition.Web.Common.Security;
+using System.Collections.Generic;
 
 namespace EthioNutrition.Web.Api.Controllers
 {
@@ -17,19 +19,22 @@ namespace EthioNutrition.Web.Api.Controllers
         private readonly ISession _session;
         private readonly IUserMapper _userMapper;
         private readonly IHttpUserFetcher _userFetcher;
+        private readonly IUserSession _userSession;        
 
         //Constructor
-        public UserController(ISession session, IUserMapper userMapper, IHttpUserFetcher userFetcher)
+        public UserController(ISession session, IUserMapper userMapper, IHttpUserFetcher userFetcher, IUserSession userSession)
         {
             _session = session;
+            _userSession = userSession;
             _userFetcher = userFetcher;
             _userMapper = userMapper;
         }
 
-        [Queryable]
-        public IQueryable<Data.Models.User> Get()
+        
+        public IEnumerable<Models.User> Get()
         {
-            return _session.Query<Data.Models.User>();
+            var user = _session.Query<Data.Models.User>().Select(_userMapper.CreateUser);
+            return user;
         }
 
         public User Get(Guid id)
