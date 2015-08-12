@@ -39,8 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseValueParser.cs" />
     <Compile Include="DateTimeAdapter.cs" />
     <Compile Include="ExceptionMessageFormatter.cs" />
+    <Compile Include="IDatabaseValueParser.cs" />
     <Compile Include="IDateTime.cs" />
     <Compile Include="IExceptionMessageFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
