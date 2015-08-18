@@ -15,7 +15,7 @@ namespace EthioNutrition.Data.SqlServer
             _sqlCommandFactory = sqlCommandFactory;
         }
 
-        public void SaveUser(Guid userId, string firstname, string lastname)
+        public void SaveUser(Guid userId, string firstname, string lastname, long profileid)
         {
             using (var command = _sqlCommandFactory.GetCommand())
             {
@@ -25,6 +25,7 @@ namespace EthioNutrition.Data.SqlServer
                 command.Parameters.AddWithValue("@userId", userId);
                 command.Parameters.AddWithValue("@firstname", firstname);
                 command.Parameters.AddWithValue("@lastname", lastname);
+                command.Parameters.AddWithValue("@profileid", profileid);
 
                 command.ExecuteNonQuery();
             }

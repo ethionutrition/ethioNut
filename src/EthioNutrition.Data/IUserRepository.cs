@@ -4,7 +4,7 @@ namespace EthioNutrition.Data
 {
    public interface IUserRepository
     {
-       void SaveUser(Guid userId, string firstname, string lastname);
+       void SaveUser(Guid userId, string firstname, string lastname, long profileid);
        User GetUser(Guid userId);
     }
 }

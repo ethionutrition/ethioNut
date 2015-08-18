@@ -8,10 +8,10 @@ namespace EthioNutrition.Data.SqlServer.Mapping
         public UserProfileMap()
         {
             Id(x => x.ProfileID);
-            Map(x => x.UserBirthDate).Not.Nullable();
-            Map(x => x.UserHeightInMeter).Not.Nullable();
-            Map(x => x.UserWeightInKg).Not.Nullable();
-            Map(x => x.UserBMI).Not.Nullable();
+            Map(x => x.UserBirthDate).Nullable();
+            Map(x => x.UserHeightInMeter).Nullable();
+            Map(x => x.UserWeightInKg).Nullable();
+            Map(x => x.UserBMI).Nullable();
         }
     }
 }

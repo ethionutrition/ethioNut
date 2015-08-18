@@ -11,6 +11,7 @@ using EthioNutrition.Web.Api.TypeMappers;
 using EthioNutrition.Web.Api.HttpFetchers;
 using EthioNutrition.Web.Common.Security;
 using System.Collections.Generic;
+using EthioNutrition.Web.Common;
 
 namespace EthioNutrition.Web.Api.Controllers
 {
@@ -45,12 +46,17 @@ namespace EthioNutrition.Web.Api.Controllers
             var userForClient = _userMapper.CreateUser(user);
             return userForClient;
         }
-
         public HttpResponseMessage Post(HttpRequestMessage request, User user)
         {
-            //var response = request.CreateResponse(HttpStatusCode.Created, newUser);
-            //response.Headers.Add("Location", Href);
-            throw new System.NotImplementedException();
+            
+            var newUser = _userManager.CreateUser(user.Email, user.Password, user.FirstName, user.LastName);
+
+            var href = newUser.Links.First(x => x.Rel == "self").Href;
+
+            var response = request.CreateResponse(HttpStatusCode.Created, newUser);
+            response.Headers.Add("Location", href);
+
+            return response;
         }
         public HttpResponseMessage Delete(Guid id)
         {
