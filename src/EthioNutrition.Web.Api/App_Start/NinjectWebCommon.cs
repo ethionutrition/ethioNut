@@ -56,6 +56,7 @@ namespace EthioNutrition.Web.Api.App_Start
         private static void RegisterServices(IKernel kernel)
         {
 
+            
             var containerConfigurator = new NinjectConfigurator();
             containerConfigurator.Configure(kernel);
 

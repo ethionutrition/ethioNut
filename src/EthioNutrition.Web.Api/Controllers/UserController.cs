@@ -19,15 +19,17 @@ namespace EthioNutrition.Web.Api.Controllers
         private readonly ISession _session;
         private readonly IUserMapper _userMapper;
         private readonly IHttpUserFetcher _userFetcher;
-        private readonly IUserSession _userSession;        
+        private readonly IUserSession _userSession;
+        private readonly IUserManager _userManager;
 
         //Constructor
-        public UserController(ISession session, IUserMapper userMapper, IHttpUserFetcher userFetcher, IUserSession userSession)
+        public UserController(ISession session, IUserMapper userMapper, IHttpUserFetcher userFetcher, IUserSession userSession, IUserManager userManager)
         {
             _session = session;
             _userSession = userSession;
             _userFetcher = userFetcher;
             _userMapper = userMapper;
+            _userManager = userManager;
         }
 
         

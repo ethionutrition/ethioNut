@@ -52,7 +52,6 @@ namespace EthioNutrition.Web.Api.App_Start
             ConfigureLog4net(container);
 
             container.Bind<IDateTime>().To<DateTimeAdapter>();
-            container.Bind<ISqlCommandFactory>().To<SqlCommandFactory>();
             container.Bind<IDatabaseValueParser>().To<DatabaseValueParser>();
 
             container.Bind<IHttpUserFetcher>().To<HttpUserFetcher>();
