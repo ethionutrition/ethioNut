@@ -1,5 +1,6 @@
 ﻿using EthioNutrition.Common;
 using EthioNutrition.Data;
+using EthioNutrition.Web.Api.HttpFetchers;
 using EthioNutrition.Web.Api.TypeMappers;
 using EthioNutrition.Web.Common;
 using EthioNutrition.Web.Common.Security;
@@ -14,26 +15,28 @@ namespace EthioNutrition.Web.Api
         private readonly IUserRepository _userRepository;
         private readonly IUserMapper _userMapper;
         private readonly ISession _session;
-        private readonly IDateTime _dateTime;
+        private readonly IProfileManager _profileManager;
+        private readonly IHttpUserFetcher _UserFetcher;
 
-        public UserManager(IMembershipInfoProvider membershipAdapter, IUserRepository userRepository, IUserMapper userMapper, ISession session,IDateTime datetime)
+        public UserManager(IMembershipInfoProvider membershipAdapter, IUserRepository userRepository, 
+            IUserMapper userMapper, ISession session, IProfileManager profileManager, IHttpUserFetcher userfetcher)
         {
             _membershipAdapter = membershipAdapter;
             _userRepository = userRepository;
             _userMapper = userMapper;
             _session = session;
-            _dateTime = datetime;
+            _profileManager = profileManager;
+            _UserFetcher = userfetcher;
         }
         [LoggingNHibernateSession]
         public Models.User CreateUser(string email, string password, string firstname, string lastname)
         {
             var wrapper = _membershipAdapter.CreateUser(email, password);
+            var profileId = _profileManager.CreateProfile();
 
-            var userProfile = new Data.Models.UserProfile { UserBirthDate= _dateTime.UtcNow };
-            _session.Save(userProfile);
+            _userRepository.SaveUser(wrapper.UserId, firstname, lastname, profileId);
 
-            _userRepository.SaveUser(wrapper.UserId, firstname, lastname,userProfile.ProfileID);
-            var user = _userMapper.CreateUser(firstname, lastname, email, wrapper.UserId);
+            var user = _userMapper.CreateUser(_UserFetcher.GetUser(wrapper.UserId));
             return user;
         }
     }

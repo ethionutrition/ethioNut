@@ -72,6 +72,9 @@ namespace EthioNutrition.Web.Api.App_Start
             container.Bind<IUserRepository>().To<UserRepository>();
 
             container.Bind<IUserSession>().ToMethod(CreateUserSession).InRequestScope();
+
+            container.Bind<IProfileManager>().To<ProfileManager>();
+            container.Bind<IUserNameCheck>().To<UserNameCheck>();
         }
 
         /// <summary>

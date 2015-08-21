@@ -7,11 +7,11 @@ namespace EthioNutrition.Data.Models
     {
         public virtual long ProfileID { get; set; }
         
-        public virtual DateTime UserBirthDate { get; set; }
+        public virtual DateTime ? UserBirthDate { get; set; }
         
-        public virtual long UserHeightInMeter { get; set; }
+        public virtual long ? UserHeightInMeter { get; set; }
         
-        public virtual long UserWeightInKg { get; set; }
+        public virtual long ? UserWeightInKg { get; set; }
         
         //user BMI should be set internally
         public virtual long UserBMI { get;  set; }    

@@ -22,15 +22,18 @@ namespace EthioNutrition.Web.Api.Controllers
         private readonly IHttpUserFetcher _userFetcher;
         private readonly IUserSession _userSession;
         private readonly IUserManager _userManager;
+        private readonly IUserNameCheck _usernamecheck;
 
         //Constructor
-        public UserController(ISession session, IUserMapper userMapper, IHttpUserFetcher userFetcher, IUserSession userSession, IUserManager userManager)
+        public UserController(ISession session, IUserMapper userMapper, IHttpUserFetcher userFetcher
+            , IUserSession userSession, IUserManager userManager, IUserNameCheck usernamecheck)
         {
             _session = session;
             _userSession = userSession;
             _userFetcher = userFetcher;
             _userMapper = userMapper;
             _userManager = userManager;
+            _usernamecheck = usernamecheck;
         }
 
         
@@ -44,19 +47,28 @@ namespace EthioNutrition.Web.Api.Controllers
         {
             var user = _userFetcher.GetUser(id);
             var userForClient = _userMapper.CreateUser(user);
-            return userForClient;
+            return userForClient; 
         }
         public HttpResponseMessage Post(HttpRequestMessage request, User user)
         {
+            _usernamecheck.CheckUserName(user.Email);
+            if (_usernamecheck.Available)
+            {
+                var newUser = _userManager.CreateUser(user.Email, user.Password, user.FirstName, user.LastName);
+
+                var href = newUser.Links.First(x => x.Rel == "self").Href;
+
+                var response = request.CreateResponse(HttpStatusCode.Created, newUser);
+                response.Headers.Add("Location", href);
+                return response;
+            }
+
+            return new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.NotAcceptable,
+                ReasonPhrase = string.Format("Email {0} already exists", user.Email)
+            };
             
-            var newUser = _userManager.CreateUser(user.Email, user.Password, user.FirstName, user.LastName);
-
-            var href = newUser.Links.First(x => x.Rel == "self").Href;
-
-            var response = request.CreateResponse(HttpStatusCode.Created, newUser);
-            response.Headers.Add("Location", href);
-
-            return response;
         }
         public HttpResponseMessage Delete(Guid id)
         {
