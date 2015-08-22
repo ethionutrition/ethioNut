@@ -12,6 +12,7 @@ using EthioNutrition.Web.Api.HttpFetchers;
 using EthioNutrition.Web.Common.Security;
 using System.Collections.Generic;
 using EthioNutrition.Web.Common;
+using System.Web.Security;
 
 namespace EthioNutrition.Web.Api.Controllers
 {
@@ -35,19 +36,11 @@ namespace EthioNutrition.Web.Api.Controllers
             _userManager = userManager;
             _usernamecheck = usernamecheck;
         }
-
         
-        public IEnumerable<Models.User> Get()
+        public User Get()
         {
-            var user = _session.Query<Data.Models.User>().Select(_userMapper.CreateUser);
-            return user;
-        }
-
-        public User Get(Guid id)
-        {
-            var user = _userFetcher.GetUser(id);
-            var userForClient = _userMapper.CreateUser(user);
-            return userForClient; 
+            var user = _userFetcher.GetUser(_userSession.UserId);
+            return _userMapper.CreateUser(user);
         }
         public HttpResponseMessage Post(HttpRequestMessage request, User user)
         {
@@ -70,9 +63,28 @@ namespace EthioNutrition.Web.Api.Controllers
             };
             
         }
-        public HttpResponseMessage Delete(Guid id)
+        [LoggingNHibernateSessionAttribute]
+        public HttpResponseMessage Delete()
         {
+            //var user = _session.Get<Data.Models.User>(_userSession.UserId);
+            //if (!Roles.GetRolesForUser(user.Email).Contains("Administrator"))
+            //{
+
+            //    _session.Delete(user);
+
+            //    return new HttpResponseMessage
+            //    {
+            //        StatusCode = HttpStatusCode.OK,
+            //        ReasonPhrase = string.Format("user Deleted succesfully")
+            //    };
+            //}
+            //return new HttpResponseMessage
+            //{
+            //    StatusCode = HttpStatusCode.Forbidden,
+            //    ReasonPhrase = string.Format("Email {0} cant be deleted Deleted succesfully", user.Email)
             return null;
+            //};
+            
         }
     }
 }
