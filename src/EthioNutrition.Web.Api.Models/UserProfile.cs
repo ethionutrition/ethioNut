@@ -13,11 +13,11 @@ namespace EthioNutrition.Web.Api.Models
 
         public DateTime? UserBirthDate { get; set; }
 
-        public long? UserHeightInMeter { get; set; }
+        public float? UserHeightInMeter { get; set; }
 
-        public long? UserWeightInKg { get; set; }
+        public float? UserWeightInKg { get; set; }
 
-        public long? UserBMI { get; set; }
+        public float? UserBMI { get; set; }
 
         public List<Link> Links { get; set; }
     }

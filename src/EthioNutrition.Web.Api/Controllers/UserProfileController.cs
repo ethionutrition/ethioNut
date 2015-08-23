@@ -13,7 +13,6 @@ using EthioNutrition.Web.Common;
 
 namespace EthioNutrition.Web.Api.Controllers
 {
-    [LoggingNHibernateSessionAttribute]
     public class UserProfileController : ApiController
     {
         private readonly ISession _session;
@@ -44,13 +43,27 @@ namespace EthioNutrition.Web.Api.Controllers
         }
         public UserProfile Get()
         {
-            var user = _session.Get<Data.Models.User>(_userSession.UserId);
-            return _userProfileMapper.CreateUserProfile(user.profile);
+
+            return _userProfileMapper.CreateUserProfile(_userProfileFetcher.GetCurrentUserProfile());
             
         }
-        public HttpResponseMessage Put(HttpRequestMessage request, UserProfile profile, Guid UserId)
+        [LoggingNHibernateSessionAttribute]
+        public HttpResponseMessage Put(HttpRequestMessage request, UserProfile profile)
         {
-            return null;
+            var userProfile = _userProfileFetcher.GetCurrentUserProfile();
+            userProfile.UserBirthDate = profile.UserBirthDate;
+            userProfile.UserHeightInMeter = profile.UserHeightInMeter;
+            userProfile.UserWeightInKg = profile.UserWeightInKg;
+
+            if ((userProfile.UserWeightInKg.HasValue) && (userProfile.UserHeightInMeter.HasValue))
+            {
+                userProfile.UserBMI = (userProfile.UserWeightInKg.GetValueOrDefault()) / (userProfile.UserHeightInMeter.GetValueOrDefault());
+            }
+            _session.Update(userProfile);
+            return new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK
+            };
         }
 
     }
