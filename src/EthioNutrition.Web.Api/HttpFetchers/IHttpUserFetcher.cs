@@ -6,5 +6,6 @@ namespace EthioNutrition.Web.Api.HttpFetchers
     public interface IHttpUserFetcher
     {
         User GetUser(Guid userId);
+        User GetCurrentUser();
     }
 }

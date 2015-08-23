@@ -1,4 +1,5 @@
-﻿using NHibernate;
+﻿using EthioNutrition.Web.Common.Security;
+using NHibernate;
 using System;
 using System.Net.Http;
 using System.Web.Http;
@@ -8,9 +9,11 @@ namespace EthioNutrition.Web.Api.HttpFetchers
     public class HttpUserFetcher: IHttpUserFetcher
     {
         private readonly ISession _session;
-        public HttpUserFetcher(ISession session)
+        private readonly IUserSession _userSession;
+        public HttpUserFetcher(ISession session, IUserSession userSession)
         {
             _session = session;
+            _userSession = userSession;
         }
         public Data.Models.User GetUser(Guid userId)
         {
@@ -26,6 +29,12 @@ namespace EthioNutrition.Web.Api.HttpFetchers
                     );
             }
             return user;
+        }
+
+
+        public Data.Models.User GetCurrentUser()
+        {
+            return GetUser(_userSession.UserId);
         }
     }
 }
