@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EthioNutrition.Common.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EthioNutrition.Web.Api.Tests", "EthioNutrition.Web.Api.Tests\EthioNutrition.Web.Api.Tests.csproj", "{1CE3D756-FEDF-49EB-820A-7DA56951653B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EthioNutrition.SmokeTest", "EthioNutrition.SmokeTest\EthioNutrition.SmokeTest.csproj", "{4350CC21-8170-40F4-9D4E-4663D2FD1798}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -127,6 +129,16 @@ Global
 		{1CE3D756-FEDF-49EB-820A-7DA56951653B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{1CE3D756-FEDF-49EB-820A-7DA56951653B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{1CE3D756-FEDF-49EB-820A-7DA56951653B}.Release|Win32.ActiveCfg = Release|Any CPU
+		{4350CC21-8170-40F4-9D4E-4663D2FD1798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4350CC21-8170-40F4-9D4E-4663D2FD1798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4350CC21-8170-40F4-9D4E-4663D2FD1798}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4350CC21-8170-40F4-9D4E-4663D2FD1798}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4350CC21-8170-40F4-9D4E-4663D2FD1798}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{4350CC21-8170-40F4-9D4E-4663D2FD1798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4350CC21-8170-40F4-9D4E-4663D2FD1798}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4350CC21-8170-40F4-9D4E-4663D2FD1798}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4350CC21-8170-40F4-9D4E-4663D2FD1798}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4350CC21-8170-40F4-9D4E-4663D2FD1798}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -134,5 +146,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C2D3E180-D17F-4302-98A1-78DEE6ED15E0} = {70DF65BB-2595-4E71-B73A-517E67B5001A}
 		{1CE3D756-FEDF-49EB-820A-7DA56951653B} = {70DF65BB-2595-4E71-B73A-517E67B5001A}
+		{4350CC21-8170-40F4-9D4E-4663D2FD1798} = {70DF65BB-2595-4E71-B73A-517E67B5001A}
 	EndGlobalSection
 EndGlobal
