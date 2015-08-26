@@ -20,7 +20,7 @@ if not exists (select * from [aspnet_Users] where UserId = N'6c82524a-b1e0-4b20-
 
 if not exists (select * from [aspnet_Users] where UserId = N'6c82524a-b1e0-4b20-97b1-dbdf0dadad8f')
 	INSERT [dbo].[aspnet_Users] ([ApplicationId], [UserId], [UserName], [LoweredUserName], [MobileAlias], [IsAnonymous], [LastActivityDate]) 
-		VALUES (N'8b2e549a-c283-46f2-b481-25136daa9059', N'6c82524a-b1e0-4b20-97b1-dbdf0dadad8e', N'yordan.desta@gmail.com', N'yordan.desta@gmail.com', NULL, 0, CAST(0x0000A100003CF03D AS DateTime))
+		VALUES (N'8b2e549a-c283-46f2-b481-25136daa9059', N'6c82524a-b1e0-4b20-97b1-dbdf0dadad8f', N'yordan.desta@gmail.com', N'yordan.desta@gmail.com', NULL, 0, CAST(0x0000A100003CF03D AS DateTime))
 
 if not exists(select * from aspnet_UsersInRoles where userId = N'6c82524a-b1e0-4b20-97b1-dbdf0dadad8e' and roleId = N'6c82524a-b1e0-4b20-97b1-dbdf0dadad8e')
 	INSERT [dbo].[aspnet_UsersInRoles] ([UserId], [RoleId]) 
