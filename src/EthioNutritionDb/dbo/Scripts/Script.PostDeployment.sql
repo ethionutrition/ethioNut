@@ -11,11 +11,4 @@ Post-Deployment Script Template
 */
 
 --:r .\ReferenceData.sql
---:r .\TestData.sql
-
-
-
-
-
-
-
+:r .\TestData.sql

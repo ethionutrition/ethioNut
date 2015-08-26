@@ -112,12 +112,6 @@
     <Build Include="dbo\Tables\aspnet_SchemaVersions.sql" />
     <Build Include="dbo\Tables\aspnet_Users.sql" />
     <Build Include="dbo\Tables\aspnet_UsersInRoles.sql" />
-    <Build Include="dbo\Tables\Category.sql" />
-    <Build Include="dbo\Tables\Priority.sql" />
-    <Build Include="dbo\Tables\Status.sql" />
-    <Build Include="dbo\Tables\Task.sql" />
-    <Build Include="dbo\Tables\TaskCategory.sql" />
-    <Build Include="dbo\Tables\TaskUser.sql" />
     <Build Include="dbo\Tables\User.sql" />
     <Build Include="dbo\Tables\UserProfile.sql" />
   </ItemGroup>
