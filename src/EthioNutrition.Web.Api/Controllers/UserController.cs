@@ -42,6 +42,8 @@ namespace EthioNutrition.Web.Api.Controllers
             var user = _userFetcher.GetUser(_userSession.UserId);
             return _userMapper.CreateUser(user);
         }
+        //[Authorize (Roles="UserCreators")]
+        [UserCreatorAuthorized]
         public HttpResponseMessage Post(HttpRequestMessage request, User user)
         {
             _usernamecheck.CheckUserName(user.Email);
