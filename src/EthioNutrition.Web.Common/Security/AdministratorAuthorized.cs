@@ -10,11 +10,4 @@ namespace EthioNutrition.Web.Common.Security
             Roles = "Administrators";
         }
     }
-    public class UserCreatorAuthorized : AuthorizeAttribute
-    {
-        public UserCreatorAuthorized()
-        {
-            Roles = "UserCreators";
-        }
-    }
 }

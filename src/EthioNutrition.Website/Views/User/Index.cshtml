@@ -1,0 +1,36 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @if (ViewBag.ErrorResult == "")
+    {
+        <table cellpadding="2" cellspacing="2" border="1">
+            <tr>
+                <th>Email</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+            </tr>
+            @foreach (var u in ViewBag.result)
+            {
+                <tr>
+                    <td>@u.Email</td>
+                    <td>@u.FirstName</td>
+                    <td>@u.LastName</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+    <h1>error</h1>
+    }
+</body>
+</html>
