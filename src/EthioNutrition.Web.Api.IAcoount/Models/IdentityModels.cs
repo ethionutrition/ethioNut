@@ -21,7 +21,7 @@ namespace EthioNutrition.Web.Api.IAcoount.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("EthioNutritionTempDb", throwIfV1Schema: false)
         {
         }
         
