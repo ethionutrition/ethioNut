@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace EthioNutrition.Website.App_Start
+namespace EthioNutrition.Website
 {
     public class BundleConfig
     {
@@ -9,29 +9,23 @@ namespace EthioNutrition.Website.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Content/js/jquery-{version}.js",
-                        "~/Content/js/jquery-{version}.min.js",
-                        "~/Content/js/jquery-{version}.min.map"));
+                        "~/Scripts/jquery-{version}.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+                        "~/Scripts/jquery.validate*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Content/js/modernizr.*"));
+                        "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/Content/js").Include(
-                      "~/Content/js/bootstrap.min.js",
-                      "~/Content/js/less-1.7.0.min.js",
-                      "~/Content/js/placeholdem.min.js",
-                      "~/Content/js/scripts.js",
-                      "~/Content/js/slick.min.js",
-                      "~/Content/js/waypoints.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/css/bootstrap.css",
-                      "~/Content/css/slick.css",
-                      "~/Content/css/animate.css",
-                      "~/Content/css/eco.css",
-                      "~/Content/css/font-awesome.min.css"));
+                      "~/Content/bootstrap.css",
+                      "~/Content/site.css"));
         }
     }
 }
