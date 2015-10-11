@@ -9,22 +9,22 @@ using System.Text;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 using EthioNutrition.Web.Common;
-
+using EthioNutrition.Web.Api.Models;
 
 namespace EthioNutrition.Website.Controllers
 {
     public class UserController : Controller
     {
-        private readonly IWebApiToken apiToken = new WebApiToken();
+        private readonly IWebApi apiToken = new WebApi();
 
-        public UserController()
-        {
+        //public UserController()
+        //{
 
-        }
-        public UserController(IWebApiToken _apiToken)
-        {
-            apiToken = _apiToken;
-        }
+        //}
+        //public UserController(IWebApi _apiToken)
+        //{
+        //    apiToken = _apiToken;
+        //}
         public async Task<ActionResult> Index()
         {
             const string userName = "test@test.com";
@@ -34,7 +34,8 @@ namespace EthioNutrition.Website.Controllers
           
             var token = await apiToken.GetApiToken(userName, password, apiBaseUri);
 
-            var response = await apiToken.GetRequest(token, apiBaseUri, apiGetValuesPath);
+            var response = await apiToken.GetJArrayResponse(token, apiBaseUri, apiGetValuesPath);
+            //var _Userresponse = await apiToken.GetRequest(token, apiBaseUri, "/api/user",new EthioNutrition.Web.Api.Models.User());
            
                 ViewData["Result"] = response;
             

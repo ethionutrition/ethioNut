@@ -46,7 +46,7 @@ namespace EthioNutrition.Web.Api.IAcoount.App_Start
         /// Add all bindings/dependencies to the container
         /// </summary>
         private void AddBindings(IKernel container)
-        {
+      {
             ConfigureNHibernate(container);
 
             //ConfigureLog4net(container);
@@ -54,6 +54,7 @@ namespace EthioNutrition.Web.Api.IAcoount.App_Start
             container.Bind<IDateTime>().To<DateTimeAdapter>();
             container.Bind<ISqlCommandFactory>().To<SqlCommandFactory>();
             container.Bind<IDatabaseValueParser>().To<DatabaseValueParser>();
+            container.Bind<IApiResponseFormat>().To<ApiResponseFormat>();
 
             // container.Bind<IHttpUserFetcher>().To<HttpUserFetcher>();
             //container.Bind<IHttpUserProfileFetcher>().To<HttpUserProfileFetcher>();

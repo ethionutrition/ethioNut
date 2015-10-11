@@ -273,6 +273,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EthioNutrition.Web.Api.Models\EthioNutrition.Web.Api.Models.csproj">
+      <Project>{623021a1-e047-4da6-8e3a-a5b2a0db78fd}</Project>
+      <Name>EthioNutrition.Web.Api.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EthioNutrition.Web.Common\EthioNutrition.Web.Common.csproj">
       <Project>{181fc59d-893e-48f1-9c0d-1f4d95b7c89f}</Project>
       <Name>EthioNutrition.Web.Common</Name>

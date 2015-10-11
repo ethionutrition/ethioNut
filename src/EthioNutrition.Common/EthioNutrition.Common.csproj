@@ -39,9 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiResponseFormat.cs" />
     <Compile Include="DatabaseValueParser.cs" />
     <Compile Include="DateTimeAdapter.cs" />
     <Compile Include="ExceptionMessageFormatter.cs" />
+    <Compile Include="IApiResponseFormat.cs" />
     <Compile Include="IDatabaseValueParser.cs" />
     <Compile Include="IDateTime.cs" />
     <Compile Include="IExceptionMessageFormatter.cs" />

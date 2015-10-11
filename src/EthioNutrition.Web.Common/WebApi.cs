@@ -5,10 +5,17 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Net.Http.Formatting;
+using EthioNutrition.Common;
 namespace EthioNutrition.Web.Common
 {
-    public class WebApiToken : IWebApiToken
+    public class WebApi : IWebApi
     {
+        private readonly ApiResponseFormat responseFormat= new ApiResponseFormat();
+
+        //public WebApi(IApiResponseFormat _responseFormat)
+        //{
+        //    responseFormat = _responseFormat;
+        //}
 
         public async Task<string> GetApiToken(string userName, string password, string apiBaseUri)
         {
@@ -51,29 +58,7 @@ namespace EthioNutrition.Web.Common
             }
 
         }
-        //public async Task<JObject> GetRequest(string token, string apiBaseUri, string requestPath)
-        //{
-        //    using (HttpClient client = new HttpClient())
-        //    {
-        //        //setup client
-        //        client.BaseAddress = new Uri(apiBaseUri);
-        //        using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, new Uri(apiBaseUri + requestPath)))
-        //        {
-        //            request.Headers.Add("Authorization", "Bearer " + token);
-        //            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-        //            HttpResponseMessage responseMessage = await client.SendAsync(request);
-
-        //            JObject result = await responseMessage.Content.ReadAsAsync<JObject>();
-
-
-        //            return result.ToObject<JObject>();
-
-
-        //        }
-        //    }
-        //}
-        public async Task<JArray> GetRequest(string token, string apiBaseUri, string requestPath)
+        public async Task<JObject> GetJObjectResponse(string token, string apiBaseUri, string requestPath, object modelObject)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -83,6 +68,24 @@ namespace EthioNutrition.Web.Common
                 {
                     request.Headers.Add("Authorization", "Bearer " + token);
                     request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage responseMessage = await client.SendAsync(request);
+
+                    JObject result = await responseMessage.Content.ReadAsAsync<JObject>();
+                    return result.ToObject<JObject>();
+                }
+            }
+        }
+        public async Task<JArray> GetJArrayResponse(string token, string apiBaseUri, string requestPath)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                //setup client
+                client.BaseAddress = new Uri(apiBaseUri);
+                using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, new Uri(apiBaseUri + requestPath)))
+                {
+                    request.Headers.Add("Authorization", "Bearer " + token);
+                    request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(responseFormat.Json));
 
                     HttpResponseMessage responseMessage = await client.SendAsync(request);
 
